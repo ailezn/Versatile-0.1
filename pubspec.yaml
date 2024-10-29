@@ -1,0 +1,54 @@
+name: versatile_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^1.0.3
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+
+  fonts:
+    - family: SFProRounded
+      fonts:
+        - asset: assets/fonts/SF-Pro-Rounded-Black.otf
+          weight: 900
+        - asset: assets/fonts/SF-Pro-Rounded-Bold.otf
+          weight: 700
+        - asset: assets/fonts/SF-Pro-Rounded-Heavy.otf
+          weight: 800
+        - asset: assets/fonts/SF-Pro-Rounded-Light.otf
+          weight: 300
+        - asset: assets/fonts/SF-Pro-Rounded-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SF-Pro-Rounded-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SF-Pro-Rounded-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/SF-Pro-Rounded-Thin.otf
+          weight: 100
+        - asset: assets/fonts/SF-Pro-Rounded-Ultralight.otf
+          weight: 200
+    - family: SFPro
+      fonts:
+        - asset: assets/fonts/SF-Pro-Rounded-Semibold.otf
+          weight: 600
