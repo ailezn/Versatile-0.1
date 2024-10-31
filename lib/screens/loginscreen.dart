@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:versatile_app/screens/registrationscreen.dart';
 import 'package:versatile_app/screens/home_screen.dart';
+import 'package:versatile_app/screens/forgotpassword.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -12,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   // Predefined username and password
-  final String correctUsername = 'zelia@gmail';
+  final String correctUsername = 'vieravaz';
   final String correctPassword = '1';
 
   void _login() {
@@ -20,15 +23,12 @@ class _LoginScreenState extends State<LoginScreen> {
     String password = _passwordController.text.trim();
 
     if (username == correctUsername && password == correctPassword) {
-      // Navigate to HomeWidget if the credentials are correct
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeWidget()),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     } else {
-      // Show error popup if the credentials are incorrect
       _showErrorDialog();
-      // Clear the text fields
       _usernameController.clear();
       _passwordController.clear();
     }
@@ -39,14 +39,14 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Login Failed'),
-          content: Text('Incorrect username or password.'),
+          title: const Text('Login Failed'),
+          content: const Text('Incorrect username or password.'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -57,63 +57,49 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(254, 254, 254, 1),
+      backgroundColor: const Color.fromRGBO(254, 254, 254, 1),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 100),
-              // Image Section
+              const SizedBox(height: 100),
               Container(
                 width: 268.89,
                 height: 165,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/images/logo2.png'),
                     fit: BoxFit.fitWidth,
                   ),
                 ),
               ),
-              SizedBox(height: 10),
-              Text(
-                'Organize your cupboard',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1),
-                  fontFamily: 'SF Pro Rounded',
-                  fontSize: 21.39,
-                  height: 1.57,
-                ),
-              ),
-              SizedBox(height: 5),
-              Text(
-                'Versatile.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1),
-                  fontFamily: 'SF Pro Rounded',
-                  fontSize: 27.5,
-                  height: 1.22,
-                ),
-              ),
-              SizedBox(height: 50),
-              // Username Field
+              const SizedBox(height: 50),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'Hello',
-                      style: TextStyle(
-                        color: Color.fromRGBO(0, 0, 43, 1),
-                        fontFamily: 'SF Pro Rounded',
-                        fontSize: 40,
-                        height: 0.84,
+                    Center(
+                      child: ShaderMask(
+                        shaderCallback: (bounds) => LinearGradient(
+                          colors: [Color(0xFF7E60BF), Color(0xFF536493)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ).createShader(bounds),
+                        child: const Text(
+                          'Hello',
+                          style: TextStyle(
+                            fontSize: 38,
+                            fontFamily: 'SF Pro Rounded',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Username',
                       style: TextStyle(
                         color: Color.fromRGBO(0, 0, 43, 1),
@@ -121,27 +107,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Color.fromRGBO(254, 254, 254, 1),
+                        color: const Color.fromRGBO(254, 254, 254, 1),
                         border: Border.all(
-                          color: Color.fromRGBO(162, 162, 208, 1),
+                          color: const Color.fromRGBO(162, 162, 208, 1),
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
-                        controller: _usernameController, // Assign the controller
-                        decoration: InputDecoration(
+                        controller: _usernameController,
+                        decoration: const InputDecoration(
                           hintText: 'Enter your username',
                           border: InputBorder.none,
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    // Password Field
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Password',
                       style: TextStyle(
                         color: Color.fromRGBO(0, 0, 43, 1),
@@ -149,60 +134,70 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Color.fromRGBO(255, 255, 255, 1),
+                        color: const Color.fromRGBO(255, 255, 255, 1),
                         border: Border.all(
-                          color: Color.fromRGBO(162, 162, 208, 1),
+                          color: const Color.fromRGBO(162, 162, 208, 1),
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
-                        controller: _passwordController, // Assign the controller
+                        controller: _passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Enter your password',
                           border: InputBorder.none,
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Forgot your password?',
-                        style: TextStyle(
-                          color: Color.fromRGBO(43, 2, 0, 1),
-                          fontFamily: 'SF Pro Rounded',
-                          fontSize: 12,
+                    const SizedBox(height: 8),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgotpasswordWidget(),
+                          ),
+                        );
+                      },
+                      child: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Forgot your password?',
+                          style: TextStyle(
+                            color: Color.fromRGBO(43, 2, 0, 1),
+                            fontFamily: 'SF Pro Rounded',
+                            fontSize: 12,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 30),
-              // Login Button
+              const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   children: <Widget>[
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(83, 100, 147, 1),
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                        backgroundColor: const Color.fromRGBO(83, 100, 147, 1),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
-                          side: BorderSide(
+                          side: const BorderSide(
                             color: Color.fromRGBO(162, 162, 208, 1),
                             width: 2,
                           ),
                         ),
                       ),
-                      onPressed: _login, // Call login function
-                      child: Center(
+                      onPressed: _login,
+                      child: const Center(
                         child: Text(
                           'Log in',
                           style: TextStyle(
@@ -213,26 +208,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: Color.fromRGBO(73, 73, 141, 1),
                           width: 2,
                         ),
                       ),
                       onPressed: () {
-                        // Navigate to RegistrationScreen on button press
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => RegistrationWidget()),
+                          MaterialPageRoute(builder: (context) => const RegistrationWidget()),
                         );
                       },
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Don’t have an account? Sign up',
                           style: TextStyle(

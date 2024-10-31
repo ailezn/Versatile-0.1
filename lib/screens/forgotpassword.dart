@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
+import 'loginscreen.dart'; // pastikan jalur file loginscreen.dart sudah benar
 
 class ForgotpasswordWidget extends StatefulWidget {
+  const ForgotpasswordWidget({super.key});
+
   @override
   _ForgotpasswordWidgetState createState() => _ForgotpasswordWidgetState();
 }
@@ -8,154 +12,138 @@ class ForgotpasswordWidget extends StatefulWidget {
 class _ForgotpasswordWidgetState extends State<ForgotpasswordWidget> {
   @override
   Widget build(BuildContext context) {
-    // Figma Flutter Generator ForgotpasswordWidget - FRAME
-    return Container(
-      width: 393,
-      height: 852,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(254, 254, 254, 1),
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(254, 254, 254, 1),
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(254, 254, 254, 1),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(SFSymbols.chevron_left, color: Color(0xFF7E60BF), size: 28),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()),
+            );
+          },
+        ),
+        title: const Text(
+          'Forgot Password',
+          style: TextStyle(
+            color: Color.fromRGBO(0, 0, 43, 1),
+            fontFamily: 'SF Pro Rounded',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
       ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 206,
-            left: 44,
-            child: Text(
-              'Forgot Password?',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: Color.fromRGBO(0, 0, 43, 1),
-                fontFamily: 'SF Pro Rounded',
-                fontSize: 40,
-                letterSpacing: 0,
-                fontWeight: FontWeight.normal,
-                height: 0.84,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 424,
-            left: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'Enter your phone number and wait for the verification code to be sent.',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 0, 43, 1),
-                      fontFamily: 'SF Pro Rounded',
-                      fontSize: 16,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
-                    ),
-                  ),
-                  SizedBox(height: 24),
-                  Text(
-                    'Phone number',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 0, 43, 1),
-                      fontFamily: 'SF Pro Rounded',
-                      fontSize: 16,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                      border: Border.all(
-                        color: Color.fromRGBO(162, 162, 208, 1),
-                        width: 1,
-                      ),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    child: Text(
-                      'Enter your phone number',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Color.fromRGBO(73, 73, 141, 1),
-                        fontFamily: 'SF Pro Rounded',
-                        fontSize: 14,
-                        letterSpacing: 0,
-                        fontWeight: FontWeight.normal,
-                        height: 1,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 773,
-            left: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Color.fromRGBO(83, 100, 147, 1),
-                  border: Border.all(
-                    color: Color.fromRGBO(162, 162, 208, 1),
-                    width: 2,
-                  ),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center, // Memastikan konten berada di tengah
+            children: <Widget>[
+              const SizedBox(height: 40),
+              ShaderMask(
+                shaderCallback: (bounds) => const LinearGradient(
+                  colors: [Color(0xFF536493), Color(0xFF7E60BF)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ).createShader(bounds),
+                child: const Icon(
+                  SFSymbols.exclamationmark_bubble,
+                  size: 160,
+                  color: Colors.white, // Color diatur menjadi putih agar mengikuti gradasi
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Forgot Password?',
+                style: TextStyle(
+                  color: Color.fromRGBO(0, 0, 43, 1),
+                  fontFamily: 'SF Pro Rounded',
+                  fontSize: 36,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Enter your phone number and wait for the verification code to be sent.',
+                style: TextStyle(
+                  color: Color.fromRGBO(0, 0, 43, 1),
+                  fontFamily: 'SF Pro Rounded',
+                  fontSize: 16,
+                  height: 1.4,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              const Align(
+                alignment: Alignment.centerLeft,
                 child: Text(
-                  'Send',
-                  textAlign: TextAlign.center,
+                  'Phone Number',
                   style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
+                    color: Color.fromRGBO(0, 0, 43, 1),
                     fontFamily: 'SF Pro Rounded',
                     fontSize: 16,
-                    letterSpacing: 0,
-                    fontWeight: FontWeight.normal,
-                    height: 1,
                   ),
                 ),
               ),
-            ),
-          ),
-          Positioned(
-            top: 54,
-            left: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SizedBox(width: 64),
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(),
+              const SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                  border: Border.all(
+                    color: const Color.fromRGBO(162, 162, 208, 1),
+                    width: 1,
                   ),
-                  SizedBox(width: 64),
-                  Text(
-                    'Verification',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 0, 43, 1),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: const TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Enter your phone number',
+                    hintStyle: TextStyle(
+                      color: Color.fromRGBO(73, 73, 141, 1),
                       fontFamily: 'SF Pro Rounded',
-                      fontSize: 16,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.normal,
-                      height: 1,
+                      fontSize: 14,
+                    ),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 160), // Memberi jarak sebelum tombol
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(83, 100, 147, 1),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: const BorderSide(
+                        color: Color.fromRGBO(162, 162, 208, 1),
+                        width: 2,
+                      ),
                     ),
                   ),
-                ],
+                  onPressed: () {
+                    // Implementasi aksi kirim ntar disini
+                  },
+                  child: const Text(
+                    'Send',
+                    style: TextStyle(
+                      color: Color.fromRGBO(254, 254, 254, 1),
+                      fontFamily: 'SF Pro Rounded',
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

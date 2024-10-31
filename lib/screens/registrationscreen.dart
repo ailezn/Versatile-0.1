@@ -1,363 +1,224 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'home_screen.dart';
 
 class RegistrationWidget extends StatefulWidget {
+  const RegistrationWidget({super.key});
+
   @override
   _RegistrationWidgetState createState() => _RegistrationWidgetState();
 }
 
 class _RegistrationWidgetState extends State<RegistrationWidget> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+
+  void _signUp() {
+    // Validate input fields
+    if (_fullNameController.text.isEmpty ||
+        _usernameController.text.isEmpty ||
+        _passwordController.text.isEmpty ||
+        _confirmPasswordController.text.isEmpty ||
+        _phoneNumberController.text.isEmpty) {
+      // Show alert if any field is empty
+      _showAlert('All fields are required!');
+      return;
+    }
+
+    // Check if password and confirm password match
+    if (_passwordController.text != _confirmPasswordController.text) {
+      _showAlert('Passwords do not match!');
+      return;
+    }
+
+    // Navigate to HomeWidget if all validations pass
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
+  }
+
+  void _showAlert(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Validation Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Figma Flutter Generator RegistrationWidget - FRAME
+    return Scaffold(
+      backgroundColor: const Color(0xFFFEFEFE),
+      body: Column(
+        children: [
+          // App Bar
+          Container(
+            padding: const EdgeInsets.only(top: 54, bottom: 16),
+            child: const Text(
+              'Registration',
+              style: TextStyle(
+                color: Color(0xFF00002B),
+                fontFamily: 'SF Pro Rounded',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
 
-    return Container(
-      width: 393,
-      height: 852,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(254, 254, 254, 1),
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 112,
-            left: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+          // Scrollable Content
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  // Full Name Field
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Full name',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color.fromRGBO(0, 0, 43, 1),
-                            fontFamily: 'SF Pro Rounded',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            height: 1,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color.fromRGBO(254, 254, 254, 1),
-                            border: Border.all(
-                              color: Color.fromRGBO(162, 162, 208, 1),
-                              width: 1,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          child: Text(
-                            'Enter your fullname',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Color.fromRGBO(73, 73, 141, 1),
-                              fontFamily: 'SF Pro Rounded',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              height: 1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  // Username Field
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Username',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color.fromRGBO(0, 0, 43, 1),
-                            fontFamily: 'SF Pro Rounded',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            height: 1,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color.fromRGBO(254, 254, 254, 1),
-                            border: Border.all(
-                              color: Color.fromRGBO(162, 162, 208, 1),
-                              width: 1,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          child: Text(
-                            'Create your username',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Color.fromRGBO(73, 73, 141, 1),
-                              fontFamily: 'SF Pro Rounded',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              height: 1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  // Password Field
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Password',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color.fromRGBO(0, 0, 43, 1),
-                            fontFamily: 'SF Pro Rounded',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            height: 1,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color.fromRGBO(254, 254, 254, 1),
-                            border: Border.all(
-                              color: Color.fromRGBO(162, 162, 208, 1),
-                              width: 1,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          child: Text(
-                            '********',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Color.fromRGBO(73, 73, 141, 1),
-                              fontFamily: 'SF Pro Rounded',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              height: 1,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-                          child: Text(
-                            'Create a minimum of 8 characters and use a combination of uppercase letters, lowercase letters, numbers, and symbols. Example: UtyH3b4t#',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Color.fromRGBO(43, 2, 0, 1),
-                              fontFamily: 'SF Pro Rounded',
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                              height: 1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  // Confirm Password Field
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Confirm Password',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color.fromRGBO(0, 0, 43, 1),
-                            fontFamily: 'SF Pro Rounded',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            height: 1,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color.fromRGBO(254, 254, 254, 1),
-                            border: Border.all(
-                              color: Color.fromRGBO(162, 162, 208, 1),
-                              width: 1,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          child: Text(
-                            '********',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Color.fromRGBO(73, 73, 141, 1),
-                              fontFamily: 'SF Pro Rounded',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              height: 1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  // Phone Number Field
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Phone number',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color.fromRGBO(0, 0, 43, 1),
-                            fontFamily: 'SF Pro Rounded',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            height: 1,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color.fromRGBO(254, 254, 254, 1),
-                            border: Border.all(
-                              color: Color.fromRGBO(162, 162, 208, 1),
-                              width: 1,
-                            ),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(
-                                '+62',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(83, 100, 147, 1),
-                                  fontFamily: 'Quicksand',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                  height: 1,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '8765890876',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(73, 73, 141, 1),
-                                  fontFamily: 'Quicksand',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                  height: 1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 54,
-            left: 0,
-            child: Container(
-              width: 393,
-              height: 60,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(0, 0, 43, 1),
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(width: 20),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context); // Add your navigation logic here
-                    },
-                    child: SvgPicture.asset(
-                      'assets/icons/back.svg',
-                      semanticsLabel: 'Back Icon',
-                      width: 24,
-                      height: 24,
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  Text(
-                    'Registration',
-                    textAlign: TextAlign.left,
+                children: [
+                  buildInputField('Full name', 'Enter your full name', _fullNameController),
+                  const SizedBox(height: 6),
+                  buildInputField('Username', 'Create your username', _usernameController),
+                  const SizedBox(height: 16),
+                  buildInputField('Password', 'Enter your password', _passwordController, isObscure: true),
+                  const SizedBox(height: 4),
+                  const Text(
+                    'Create a minimum of 8 characters and use a combination of uppercase letters, lowercase letters, numbers, and symbols. Example: UtyH3b4t#',
                     style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 1),
+                      color: Color(0xFF2B0200),
                       fontFamily: 'SF Pro Rounded',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      height: 1,
+                      fontSize: 12,
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  buildInputField('Confirm Password', 'Confirm your new password', _confirmPasswordController, isObscure: true),
+                  const SizedBox(height: 16),
+                  buildInputField('Phone number', 'Enter your phone number', _phoneNumberController, prefixText: '+62'),
+
+                  // Sign Up Button
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(83, 100, 147, 1),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        side: const BorderSide(
+                          color: Color.fromRGBO(162, 162, 208, 1),
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    onPressed: _signUp,
+                    child: const Center(
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          color: Color.fromRGBO(254, 254, 254, 1),
+                          fontFamily: 'SF Pro Rounded',
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      side: const BorderSide(
+                        color: Color.fromRGBO(73, 73, 141, 1),
+                        width: 2,
+                      ),
+                    ),
+                    onPressed: () {
+                      // Navigate to Login screen
+                      Navigator.pop(context);
+                    },
+                    child: const Center(
+                      child: Text(
+                        'Already have an account? Log in',
+                        style: TextStyle(
+                          color: Color.fromRGBO(73, 73, 141, 1),
+                          fontFamily: 'SF Pro Rounded',
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                 ],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 772,
-            left: 0,
-            child: Container(
-              width: 393,
-              height: 80,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(0, 0, 43, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  // Add your registration logic here
-                },
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    fontFamily: 'SF Pro Rounded',
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildInputField(String label, String hint, TextEditingController controller, {String? prefixText, bool isObscure = false}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            color: Color(0xFF00002B),
+            fontFamily: 'SF Pro Rounded',
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            border: Border.all(color: const Color(0xFFA2A2D0)),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            children: [
+              if (prefixText != null) 
+                Text(
+                  prefixText,
+                  style: const TextStyle(
+                    color: Color(0xFF536493),
+                    fontFamily: 'SF Pro Rounded',
+                    fontSize: 14,
+                  ),
+                ),
+              if (prefixText != null) const SizedBox(width: 8),
+              Expanded(
+                child: TextField(
+                  controller: controller,
+                  obscureText: isObscure,
+                  decoration: InputDecoration(
+                    hintText: hint,
+                    hintStyle: const TextStyle(
+                      color: Color(0xFF49498D),
+                      fontFamily: 'SF Pro Rounded',
+                      fontSize: 14,
+                    ),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
