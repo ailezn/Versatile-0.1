@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-## Getting Started
+## Priview
 
 This project is a starting point for a Flutter application.
 
