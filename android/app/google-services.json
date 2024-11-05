@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "47373732844",
+    "project_id": "versatiledb-74db3",
+    "storage_bucket": "versatiledb-74db3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47373732844:android:b4139a84d3b7c847bacec9",
+        "android_client_info": {
+          "package_name": "com.example.versatile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANYRnjw6M_FSMJP-XvdqMCCh9ue_6CKao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
