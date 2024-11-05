@@ -6,42 +6,6 @@ import 'package:versatile_app/screens/add_screen.dart';
 import 'package:versatile_app/screens/cupboard_screen.dart';
 import 'package:versatile_app/screens/profile_screen.dart';
 
-// class HomeWidget extends StatefulWidget {
-//   const HomeWidget({super.key});
-
-//   @override
-//   _HomeWidgetState createState() => _HomeWidgetState();
-// }
-
-// class _HomeWidgetState extends State<HomeWidget> {
-//   int _selectedIndex = 0;
-
-//   final List<Widget> _screens = [
-//     HomeScreen(),
-//     RecommendedScreen(),
-//     AddScreen(),
-//     CupboardScreen(),
-//     ProfileWidget(),
-//   ];
-
-//   void _onItemTapped(int index) {
-//     setState(() {
-//       _selectedIndex = index;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: _screens[_selectedIndex],
-//       bottomNavigationBar: NavigationBarWidget(
-//         onItemTapped: _onItemTapped,
-//         selectedIndex: _selectedIndex,
-//       ),
-//     );
-//   }
-// }
-
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
@@ -58,19 +22,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    HomeScreen(),
-    RecommendedScreen(),
-    AddScreen(),
-    CupboardScreen(),
-    ProfileWidget(),
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    switch (index) {
+      case 0:
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/recommend');
+        break;
+    }
   }
+
+  // // disini rubah jadi ada kondisi (bisa pakek switch atau if else)
+  // final List<Widget> _screens = [
+  //   HomeScreen(),
+  //   RecommendedScreen(),
+  //   AddScreen(),
+  //   CupboardScreen(),
+  //   ProfileWidget(),
+  // ];
 
   @override
   Widget build(BuildContext context) {

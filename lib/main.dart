@@ -11,8 +11,6 @@ import 'package:versatile_app/screens/recommended_screen.dart';
 import 'package:versatile_app/screens/registrationscreen.dart';
 import 'screens/splashscreen.dart';
 
-
-
 void main() {
   runApp(MyApp());
 }
@@ -41,7 +39,6 @@ class MyApp extends StatelessWidget {
         '/edit-profile': (context) => EditProfileWidget(),
         '/change-profile': (context) => ChangePasswordWidget(),
       },
-
     );
   }
 }
