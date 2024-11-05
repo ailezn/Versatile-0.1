@@ -16,25 +16,43 @@ class NavigationBarWidget extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: selectedIndex,
       onTap: onItemTapped,
+      selectedItemColor: Colors.blue, // Set color for selected item here
+      unselectedItemColor: Colors.black, // Set color for unselected items here
+      backgroundColor: Colors.red,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(SFSymbols.house),
+          icon: Icon(
+            SFSymbols.house,
+            color: Colors.black,
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(SFSymbols.staroflife),
+          icon: Icon(
+            SFSymbols.staroflife,
+            color: Colors.black,
+          ),
           label: 'Recommend',
         ),
         BottomNavigationBarItem(
-          icon: Icon(SFSymbols.plus_circle),
+          icon: Icon(
+            SFSymbols.plus_circle,
+            color: Colors.black,
+          ),
           label: 'Add',
         ),
         BottomNavigationBarItem(
-          icon: Icon(SFSymbols.cube_box),
+          icon: Icon(
+            SFSymbols.cube_box,
+            color: Colors.black,
+          ),
           label: 'Cupboard',
         ),
         BottomNavigationBarItem(
-          icon: Icon(SFSymbols.person),
+          icon: Icon(
+            SFSymbols.person,
+            color: Colors.black,
+          ),
           label: 'Profile',
         ),
       ],
