@@ -42,7 +42,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   }
 
   String? validatePassword(String? value) {
-    if (value!.length <= 8) {
+    if (value!.length < 8) {
       return ' Password tidak boleh kurang dari 8';
     }
     return null;
