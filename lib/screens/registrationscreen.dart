@@ -12,7 +12,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
 
   void _signUp() {
@@ -27,17 +28,24 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
       return;
     }
 
-    // Check if password and confirm password match
-    if (_passwordController.text != _confirmPasswordController.text) {
-      _showAlert('Passwords do not match!');
-      return;
+    final validate = validatePassword(_passwordController.text);
+    if (validate == null) {
+      // Navigate to HomeWidget if all validations pass
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(validate)));
     }
+  }
 
-    // Navigate to HomeWidget if all validations pass
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
+  String? validatePassword(String? value) {
+    if (value!.length <= 8) {
+      return ' Password tidak boleh kurang dari 8';
+    }
+    return null;
   }
 
   void _showAlert(String message) {
@@ -86,11 +94,15 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  buildInputField('Full name', 'Enter your full name', _fullNameController),
+                  buildInputField(
+                      'Full name', 'Enter your full name', _fullNameController),
                   const SizedBox(height: 6),
-                  buildInputField('Username', 'Create your username', _usernameController),
+                  buildInputField(
+                      'Username', 'Create your username', _usernameController),
                   const SizedBox(height: 16),
-                  buildInputField('Password', 'Enter your password', _passwordController, isObscure: true),
+                  buildInputField(
+                      'Password', 'Enter your password', _passwordController,
+                      isObscure: true),
                   const SizedBox(height: 4),
                   const Text(
                     'Create a minimum of 8 characters and use a combination of uppercase letters, lowercase letters, numbers, and symbols. Example: UtyH3b4t#',
@@ -101,9 +113,13 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  buildInputField('Confirm Password', 'Confirm your new password', _confirmPasswordController, isObscure: true),
+                  buildInputField('Confirm Password',
+                      'Confirm your new password', _confirmPasswordController,
+                      isObscure: true),
                   const SizedBox(height: 16),
-                  buildInputField('Phone number', 'Enter your phone number', _phoneNumberController, prefixText: '+62'),
+                  buildInputField('Phone number', 'Enter your phone number',
+                      _phoneNumberController,
+                      prefixText: '+62'),
 
                   // Sign Up Button
                   const SizedBox(height: 30),
@@ -168,7 +184,9 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
     );
   }
 
-  Widget buildInputField(String label, String hint, TextEditingController controller, {String? prefixText, bool isObscure = false}) {
+  Widget buildInputField(
+      String label, String hint, TextEditingController controller,
+      {String? prefixText, bool isObscure = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -190,7 +208,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Row(
             children: [
-              if (prefixText != null) 
+              if (prefixText != null)
                 Text(
                   prefixText,
                   style: const TextStyle(

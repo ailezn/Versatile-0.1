@@ -18,6 +18,7 @@ class NavigationBarWidget extends StatelessWidget {
       onTap: onItemTapped,
       selectedItemColor: Colors.blue, // Set color for selected item here
       unselectedItemColor: Colors.black, // Set color for unselected items here
+
       backgroundColor: Colors.red,
       items: const [
         BottomNavigationBarItem(
