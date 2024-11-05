@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/splashscreen.dart'; // Pastikan untuk mengimpor file splashscreen.dart
+import 'screens/splashscreen.dart';
 
 void main() {
   runApp(MyApp());
