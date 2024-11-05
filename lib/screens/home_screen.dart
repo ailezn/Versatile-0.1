@@ -33,6 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         Navigator.pushNamed(context, '/recommend');
         break;
+      case 2:
+        Navigator.pushNamed(context, '/add');
+        break;
     }
   }
 

@@ -19,7 +19,11 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
     switch (index) {
       case 0:
         Navigator.pushNamed(context, '/home');
+        break;
       case 1:
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/add');
         break;
     }
   }
